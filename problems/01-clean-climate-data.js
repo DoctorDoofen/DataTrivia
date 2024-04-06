@@ -12,8 +12,12 @@ For example, it should return:
 */
 
 function listAllCitiesWithCountries(climateData) {
-    // Your code here 
+
+
+    const citiesAndCountries = (climateData.map(obj => obj.city + ', ' + obj.country));
+    return citiesAndCountries;
 }
+
 
 // console.log(listAllCitiesWithCountries(climateData));
 
@@ -31,8 +35,15 @@ For example, it should return:
 
 
 function listAllUsCities(climateData) {
-    // Your code here 
+    let usCities = [];
+    climateData.map(obj => {
+        if (obj.country === 'United States')
+            usCities.push(obj.city + ', ' + obj.country)
+    });
+    return usCities;
+
 }
+
 
 // console.log(listAllUsCities(climateData));
 
@@ -51,22 +62,30 @@ was duplicated in id 3, 7, and 9, the returned object should look like:
 
 
 function findDuplicates(climateData) {
-    // Your code here 
+    let num = [];
+    let city = []
+    const cityId = climateData.map(obj => {
+        num.push(obj.id)
+        city.push(obj.city, num);
+        return city;
+    });
+    return cityId;
+
 }
 
-// console.log(findDuplicates(climateData));
+console.log(findDuplicates(climateData));
 
 
 
 /* 04. `returnDuplicate` Which city object should be corrected in
 the data set?
-
+ 
 Write a function, `returnDuplicate` that finds the ONE duplicated city,
 and returns the data (object) of the last instance of that city.
-
+ 
 For example, if `Paris` showed up twice with an id of 2 and 5, the function
 should and return the object with the id of 5.
-
+ 
 HINT: Use documentation to research the `find()` method in JavaScript. You may,
 but do not have to, use this method to solve this problem.
 */
@@ -80,14 +99,14 @@ function returnDuplicate(climateData) {
 
 
 /* 05. `correctDuplicate` Correct the city name of the duplicated city.
-
+ 
 Write a function, `correctDuplicate` that finds the ONE duplicated city,
 and changes the name of the city to the name provided as a second argument.
-
+ 
 For example, if `Paris` showed up twice with an id of 2 and 5, calling
 correctDuplicate(climateData, "Nice"), should change the city for the object
 with id of 5 to 'Nice' and then return that object with the corrected city name.
-
+ 
 HINT: Can you use functions you have already written to help solve this problem?
 */
 
@@ -102,5 +121,5 @@ function correctDuplicate(climateData, newCityName) {
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 
-module.exports = [ listAllCitiesWithCountries, listAllUsCities, findDuplicates,
-    returnDuplicate, correctDuplicate ];
+module.exports = [listAllCitiesWithCountries, listAllUsCities, findDuplicates,
+    returnDuplicate, correctDuplicate];
